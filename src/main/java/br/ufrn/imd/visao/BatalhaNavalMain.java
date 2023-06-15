@@ -5,7 +5,7 @@ import javafx.scene.Parent;
 public class BatalhaNavalMain {
     public static void main(String[] args) {
 
-
+        System.out.println("teste");
 
     }
 }

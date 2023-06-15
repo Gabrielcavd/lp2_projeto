@@ -1,4 +1,4 @@
-module br.ufrn.imd.lp2_projeto {
+module br.ufrn.imd {
     requires javafx.controls;
     requires javafx.fxml;
 
