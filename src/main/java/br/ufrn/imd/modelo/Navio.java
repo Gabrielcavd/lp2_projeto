@@ -9,7 +9,9 @@ public abstract class Navio {
         this.vida = vida;
     }
 
-    public void atingido(){}
+    public void atingido(){
+        vida--;
+    }
 
     public boolean vivo() {
         return vida > 0;
