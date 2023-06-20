@@ -7,8 +7,8 @@ public class Celula extends Rectangle {
 
     private int x;
     private int y;
-    private boolean foiAtingido;
-    private boolean temNavio;
+    private boolean foiAtingido; //precisamos desse atributo? tem um método com o mesmo nome
+    private boolean navio = false;
     private Tabuleiro tabuleiro;
 
     public Celula(int x, int y, Tabuleiro tabuleiro){
@@ -18,6 +18,14 @@ public class Celula extends Rectangle {
         this.tabuleiro = tabuleiro;
         setFill(Color.LIGHTBLUE);
         setStroke(Color.BLACK);
+    }
+
+    public boolean isNavio() {
+        return navio;
+    }
+
+    public void setNavio(boolean navio) {
+        this.navio = navio;
     }
 
     public boolean foiAtingido(){
