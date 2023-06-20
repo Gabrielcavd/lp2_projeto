@@ -17,8 +17,8 @@ public class BatalhaNavalMain extends Application {
     public Parent criarTabuleiros(){
         BorderPane root = new BorderPane();
         root.setPrefSize(600, 800);
-        Tabuleiro tabuleiroPlayer = new Tabuleiro();
-        Tabuleiro tabuleroInimigo = new Tabuleiro();
+        Tabuleiro tabuleiroPlayer = new Tabuleiro(false);
+        Tabuleiro tabuleroInimigo = new Tabuleiro(true);
         HBox hbox = new HBox(50, tabuleiroPlayer, tabuleroInimigo);
         hbox.setAlignment(Pos.CENTER);
         root.setCenter(hbox);
