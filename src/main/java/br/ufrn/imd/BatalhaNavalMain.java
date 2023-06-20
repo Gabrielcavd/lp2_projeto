@@ -1,11 +1,15 @@
 package br.ufrn.imd;
 
+import br.ufrn.imd.modelo.Celula;
+import br.ufrn.imd.modelo.Destroyer;
+import br.ufrn.imd.modelo.Navio;
 import br.ufrn.imd.modelo.Tabuleiro;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -14,12 +18,23 @@ import java.io.IOException;
 
 public class BatalhaNavalMain extends Application {
 
+    private boolean running = false;
+    private int shipsToPlace = 5;
+    private Tabuleiro tabuleiroPlayer;
+    private Tabuleiro tabuleiroInimigo;
     public Parent criarTabuleiros(){
         BorderPane root = new BorderPane();
-        root.setPrefSize(600, 800);
-        Tabuleiro tabuleiroPlayer = new Tabuleiro(false);
-        Tabuleiro tabuleroInimigo = new Tabuleiro(true);
-        HBox hbox = new HBox(50, tabuleiroPlayer, tabuleroInimigo);
+        root.setPrefSize(800, 800);
+        tabuleiroPlayer = new Tabuleiro(false, event -> {
+            if (running){
+                return;
+            }
+            Celula cell = (Celula) event.getSource();
+            tabuleiroPlayer.posicionar_navio(new Destroyer(event.getButton() == MouseButton.PRIMARY), cell.getThisX(), cell.getThisY());
+
+        });
+        //Tabuleiro tabuleroInimigo = new Tabuleiro(true);
+        HBox hbox = new HBox(50, tabuleiroPlayer);
         hbox.setAlignment(Pos.CENTER);
         root.setCenter(hbox);
         return root;

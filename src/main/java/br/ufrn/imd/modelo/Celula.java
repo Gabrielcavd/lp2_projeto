@@ -20,6 +20,14 @@ public class Celula extends Rectangle {
         setStroke(Color.BLACK);
     }
 
+    public int getThisX() {
+        return x;
+    }
+
+    public int getThisY() {
+        return y;
+    }
+
     public boolean isNavio() {
         return navio;
     }

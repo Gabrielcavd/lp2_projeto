@@ -1,7 +1,9 @@
 package br.ufrn.imd.modelo;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Parent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -16,13 +18,14 @@ public class Tabuleiro extends Parent {
     private int colunas = 10;
     private boolean inimigo;
 
-    public Tabuleiro(boolean inimigo) {
+    public Tabuleiro(boolean inimigo, EventHandler<? super MouseEvent> handler) {
         this.inimigo = inimigo;
         this.qtd_navios = 4;
         for(int y = 0; y< 10; y++){
             HBox linha = new HBox();
             for(int x = 0; x<colunas; x++){
                 Celula theCelula = new Celula(x, y, this);
+                theCelula.setOnMouseClicked(handler);
                 linha.getChildren().add(theCelula);
             }
             linhas.getChildren().add(linha);
@@ -48,6 +51,7 @@ public class Tabuleiro extends Parent {
                     if (!inimigo) {
                         celula.setFill(Color.WHITE);
                         celula.setStroke(Color.GREEN);
+                        System.out.println(i + y);
                     }
                 }
             }
@@ -56,6 +60,7 @@ public class Tabuleiro extends Parent {
                     Celula celula = new Celula(x, i, this);
                     celula.setNavio(true);
                     if (!inimigo) {
+                        System.out.println("testeV");
                         celula.setFill(Color.WHITE);
                         celula.setStroke(Color.GREEN);
                     }
