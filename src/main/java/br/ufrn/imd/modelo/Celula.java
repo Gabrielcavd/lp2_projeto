@@ -7,13 +7,12 @@ public class Celula extends Rectangle {
 
     private int x;
     private int y;
-    private boolean foiAtingido;
-    private Navio navio;
+    private boolean foiAtingido; //precisamos desse atributo? tem um método com o mesmo nome
+    private boolean navio = false;
     private Tabuleiro tabuleiro;
 
     public Celula(int x, int y, Tabuleiro tabuleiro){
-        super(35,35);
-        navio = null;
+        super(30,30);
         this.x = x;
         this.y = y;
         this.tabuleiro = tabuleiro;
@@ -21,19 +20,15 @@ public class Celula extends Rectangle {
         setStroke(Color.BLACK);
     }
 
+    public boolean isNavio() {
+        return navio;
+    }
+
+    public void setNavio(boolean navio) {
+        this.navio = navio;
+    }
+
     public boolean foiAtingido(){
-
-        foiAtingido = true;
-        setFill(Color.BLACK);
-
-        if (navio != null){
-            navio.atingido();
-            setFill(Color.RED);
-            if(navio.vivo() == false){
-                tabuleiro.setQtd_navios(tabuleiro.getQtd_navios()-1);
-            }
-            return true;
-        }
-       return false;
+        return true;
     }
 }
