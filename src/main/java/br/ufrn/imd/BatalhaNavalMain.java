@@ -1,9 +1,6 @@
 package br.ufrn.imd;
 
-import br.ufrn.imd.modelo.Celula;
-import br.ufrn.imd.modelo.Destroyer;
-import br.ufrn.imd.modelo.Navio;
-import br.ufrn.imd.modelo.Tabuleiro;
+import br.ufrn.imd.modelo.*;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -19,22 +16,44 @@ import java.io.IOException;
 public class BatalhaNavalMain extends Application {
 
     private boolean running = false;
+    private boolean enemyTurn = false;
     private int shipsToPlace = 5;
     private Tabuleiro tabuleiroPlayer;
     private Tabuleiro tabuleiroInimigo;
     public Parent criarTabuleiros(){
         BorderPane root = new BorderPane();
         root.setPrefSize(800, 800);
+
+        tabuleiroInimigo = new Tabuleiro(true, event -> {
+            if (!running)
+                return;
+
+            Celula cell = (Celula) event.getSource();
+            if (cell.foiAtingido())
+                return;
+
+            enemyTurn = !cell.atirar();
+
+            if (tabuleiroInimigo.getQtd_navios() == 0) {
+                System.out.println("YOU WIN");
+                System.exit(0);
+            }
+
+//            if (enemyTurn)
+//                enemyMove();
+        });
+
         tabuleiroPlayer = new Tabuleiro(false, event -> {
             if (running){
                 return;
             }
             Celula cell = (Celula) event.getSource();
-            tabuleiroPlayer.posicionar_navio(new Destroyer(event.getButton() == MouseButton.PRIMARY), cell.getThisX(), cell.getThisY());
+            tabuleiroPlayer.posicionar_navio(new Corveta(event.getButton() == MouseButton.PRIMARY), cell.getThisX(), cell.getThisY());
+            //tabuleiroPlayer.posicionar_navio(new Destroyer(event.getButton() == MouseButton.PRIMARY), cell.getThisX(), cell.getThisY());
 
         });
         //Tabuleiro tabuleroInimigo = new Tabuleiro(true);
-        HBox hbox = new HBox(50, tabuleiroPlayer);
+        HBox hbox = new HBox(50, tabuleiroPlayer, tabuleiroInimigo);
         hbox.setAlignment(Pos.CENTER);
         root.setCenter(hbox);
         return root;

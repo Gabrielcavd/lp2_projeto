@@ -46,23 +46,23 @@ public class Tabuleiro extends Parent {
             int tamanho = navio.getTamanho();
             if(navio.isHorizontal()) {
                 for (int i = x; i < x + tamanho; i++) {
-                    Celula celula = new Celula(i, y, this);
-                    celula.setNavio(true);
+                    Celula celula = getCell(i, y);
+                    celula.setNavio(navio);
                     if (!inimigo) {
-                        celula.setFill(Color.WHITE);
-                        celula.setStroke(Color.GREEN);
+                        celula.setFill(Color.GRAY);
+                        celula.setStroke(Color.WHITE);
                         System.out.println(i + y);
                     }
                 }
             }
             else {
                 for (int i = y; i < (y + tamanho); i++) {
-                    Celula celula = new Celula(x, i, this);
-                    celula.setNavio(true);
+                    Celula celula = getCell(x, i);
+                    celula.setNavio(navio);
                     if (!inimigo) {
                         System.out.println("testeV");
-                        celula.setFill(Color.WHITE);
-                        celula.setStroke(Color.GREEN);
+                        celula.setFill(Color.GRAY);
+                        celula.setStroke(Color.WHITE);
                     }
                 }
             }
@@ -80,7 +80,7 @@ public class Tabuleiro extends Parent {
                 }
 
                 Celula celula = new Celula(i, y, this);
-                if (celula.isNavio() == true) {
+                if (celula.getNavio() != null) {
                     return false;
                 }
 
@@ -90,7 +90,7 @@ public class Tabuleiro extends Parent {
                         return false;
                     }
 
-                    if (vizinho.isNavio() != false) {
+                    if (vizinho.getNavio() != null) {
                         return false;
                     }
                 }
@@ -102,7 +102,7 @@ public class Tabuleiro extends Parent {
                 }
 
                 Celula celula = new Celula(x, i, this);
-                if (celula.isNavio() == true) {
+                if (celula.getNavio() != null) {
                     return false;
                 }
 
@@ -111,7 +111,7 @@ public class Tabuleiro extends Parent {
                         return false;
                     }
 
-                    if (vizinho.isNavio() != false) {
+                    if (vizinho.getNavio() != null) {
                         return false;
                     }
                 }
@@ -150,6 +150,11 @@ public class Tabuleiro extends Parent {
     private boolean pontoValido(int x, int y) {
         return (x >= 0) && (x < 10) && (y >= 0) && (y < 10);
     }
+
+    public Celula getCell(int x, int y) {
+        return (Celula) ((HBox) linhas.getChildren().get(y)).getChildren().get(x);
+    }
+
 
     void atirar() {
 
