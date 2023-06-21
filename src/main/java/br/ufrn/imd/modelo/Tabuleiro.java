@@ -51,7 +51,7 @@ public class Tabuleiro extends Parent {
                     if (!inimigo) {
                         celula.setFill(Color.GRAY);
                         celula.setStroke(Color.WHITE);
-                        System.out.println(i + y);
+//                        System.out.println(i + y);
                     }
                 }
             }
@@ -60,7 +60,7 @@ public class Tabuleiro extends Parent {
                     Celula celula = getCell(x, i);
                     celula.setNavio(navio);
                     if (!inimigo) {
-                        System.out.println("testeV");
+//                        System.out.println("testeV");
                         celula.setFill(Color.GRAY);
                         celula.setStroke(Color.WHITE);
                     }
@@ -79,7 +79,7 @@ public class Tabuleiro extends Parent {
                     return false;
                 }
 
-                Celula celula = new Celula(i, y, this);
+                Celula celula = getCell(i, y);
                 if (celula.getNavio() != null) {
                     return false;
                 }
@@ -101,7 +101,7 @@ public class Tabuleiro extends Parent {
                     return false;
                 }
 
-                Celula celula = new Celula(x, i, this);
+                Celula celula = getCell(x, i);
                 if (celula.getNavio() != null) {
                     return false;
                 }
