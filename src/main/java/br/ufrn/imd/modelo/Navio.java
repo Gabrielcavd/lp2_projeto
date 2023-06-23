@@ -5,10 +5,9 @@ public abstract class Navio {
     private int vida;
     private boolean horizontal = true;
 
-    public Navio(int tamanho, int vida, boolean horizontal) {
+    public Navio(int tamanho, int vida) {
         this.tamanho = tamanho;
         this.vida = vida;
-        this.horizontal = horizontal;
     }
 
     public int getTamanho() {

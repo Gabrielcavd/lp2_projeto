@@ -12,12 +12,14 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Stack;
 
 public class BatalhaNavalMain extends Application {
 
     private boolean running = false;
     private boolean enemyTurn = false;
-    private int shipsToPlace = 5;
+    private int shipsToPlace = 4;
     private Tabuleiro tabuleiroPlayer;
     private Tabuleiro tabuleiroInimigo;
     public Parent criarTabuleiros(){
@@ -47,11 +49,27 @@ public class BatalhaNavalMain extends Application {
             if (running){
                 return;
             }
-            Celula cell = (Celula) event.getSource();
-            tabuleiroPlayer.posicionar_navio(new Corveta(event.getButton() == MouseButton.PRIMARY), cell.getThisX(), cell.getThisY());
-            //tabuleiroPlayer.posicionar_navio(new Destroyer(event.getButton() == MouseButton.PRIMARY), cell.getThisX(), cell.getThisY());
 
+            ArrayList<Navio> naviosParaPosicionar = new ArrayList<Navio>();
+            naviosParaPosicionar.add(new Corveta());
+            naviosParaPosicionar.add(new Submarino());
+            naviosParaPosicionar.add(new Fragata());
+            naviosParaPosicionar.add(new Destroyer());
+
+            Celula cell = (Celula) event.getSource();
+
+            if (shipsToPlace > 0) {
+                naviosParaPosicionar.get(shipsToPlace - 1).setHorizontal(event.getButton() == MouseButton.PRIMARY);
+                boolean isOk = tabuleiroPlayer.posicionar_navio(
+                        naviosParaPosicionar.get(shipsToPlace - 1), cell.getThisX(), cell.getThisY()
+                );
+
+                if (isOk) {
+                    --shipsToPlace;
+                }
+            }
         });
+
         //Tabuleiro tabuleroInimigo = new Tabuleiro(true);
         HBox hbox = new HBox(50, tabuleiroPlayer, tabuleiroInimigo);
         hbox.setAlignment(Pos.CENTER);

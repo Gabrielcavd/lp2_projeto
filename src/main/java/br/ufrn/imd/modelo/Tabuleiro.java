@@ -42,25 +42,22 @@ public class Tabuleiro extends Parent {
     }
 
     public boolean posicionar_navio(Navio navio, int x, int y) {
-        if(cabeNavio(navio, x, y)) {
+        if (cabeNavio(navio, x, y)) {
             int tamanho = navio.getTamanho();
-            if(navio.isHorizontal()) {
+            if (navio.isHorizontal()) {
                 for (int i = x; i < x + tamanho; i++) {
                     Celula celula = getCell(i, y);
                     celula.setNavio(navio);
                     if (!inimigo) {
                         celula.setFill(Color.GRAY);
                         celula.setStroke(Color.WHITE);
-//                        System.out.println(i + y);
                     }
                 }
-            }
-            else {
-                for (int i = y; i < (y + tamanho); i++) {
+            } else {
+                for (int i = y; i < y + tamanho; i++) {
                     Celula celula = getCell(x, i);
                     celula.setNavio(navio);
                     if (!inimigo) {
-//                        System.out.println("testeV");
                         celula.setFill(Color.GRAY);
                         celula.setStroke(Color.WHITE);
                     }
