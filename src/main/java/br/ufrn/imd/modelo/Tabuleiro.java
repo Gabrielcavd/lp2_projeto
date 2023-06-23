@@ -3,6 +3,7 @@ package br.ufrn.imd.modelo;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -21,6 +22,14 @@ public class Tabuleiro extends Parent {
     public Tabuleiro(boolean inimigo, EventHandler<? super MouseEvent> handler) {
         this.inimigo = inimigo;
         this.qtd_navios = 4;
+        Label tituloTabuleiro = new Label();
+        if(inimigo){
+            tituloTabuleiro.setText("Tabuleiro Inimigo");
+        } else {
+            tituloTabuleiro.setText("Tabuleiro Player");
+        }
+
+
         for(int y = 0; y< 10; y++){
             HBox linha = new HBox();
             for(int x = 0; x<colunas; x++){
@@ -30,7 +39,10 @@ public class Tabuleiro extends Parent {
             }
             linhas.getChildren().add(linha);
         }
+        HBox LinhaTexto = new HBox(tituloTabuleiro);
+        linhas.getChildren().add(LinhaTexto);
         getChildren().add(linhas);
+
     }
 
     public int getQtd_navios() {
@@ -48,19 +60,19 @@ public class Tabuleiro extends Parent {
                 for (int i = x; i < x + tamanho; i++) {
                     Celula celula = getCell(i, y);
                     celula.setNavio(navio);
-                    if (!inimigo) {
+                   // if (!inimigo) {
                         celula.setFill(Color.GRAY);
                         celula.setStroke(Color.WHITE);
-                    }
+                    //}
                 }
             } else {
                 for (int i = y; i < y + tamanho; i++) {
                     Celula celula = getCell(x, i);
                     celula.setNavio(navio);
-                    if (!inimigo) {
+                    //if (!inimigo) {
                         celula.setFill(Color.GRAY);
                         celula.setStroke(Color.WHITE);
-                    }
+                  //  }
                 }
             }
             return true;
