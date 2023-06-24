@@ -60,19 +60,19 @@ public class Tabuleiro extends Parent {
                 for (int i = x; i < x + tamanho; i++) {
                     Celula celula = getCell(i, y);
                     celula.setNavio(navio);
-                   // if (!inimigo) {
+                    if (!inimigo) {
                         celula.setFill(Color.GRAY);
                         celula.setStroke(Color.WHITE);
-                    //}
+                    }
                 }
             } else {
                 for (int i = y; i < y + tamanho; i++) {
                     Celula celula = getCell(x, i);
                     celula.setNavio(navio);
-                    //if (!inimigo) {
+                    if (!inimigo) {
                         celula.setFill(Color.GRAY);
                         celula.setStroke(Color.WHITE);
-                  //  }
+                    }
                 }
             }
             return true;

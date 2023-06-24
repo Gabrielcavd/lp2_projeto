@@ -7,7 +7,7 @@ public class Celula extends Rectangle {
 
     private int x;
     private int y;
-    private boolean foiAtingido; //precisamos desse atributo? tem um método com o mesmo nome
+    private boolean foiAtingido = false; //precisamos desse atributo? tem um método com o mesmo nome
     private Navio navio = null;
     private Tabuleiro tabuleiro;
 
@@ -36,8 +36,11 @@ public class Celula extends Rectangle {
         return navio;
     }
 
-    public boolean foiAtingido(){
-        return true;
+    public boolean isFoiAtingido() {
+        return foiAtingido;
+    }
+    public void setFoiAtingido(boolean foiAtingido) {
+        this.foiAtingido = foiAtingido;
     }
 
     public boolean atirar() {

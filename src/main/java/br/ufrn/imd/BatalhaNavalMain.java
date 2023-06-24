@@ -35,7 +35,7 @@ public class BatalhaNavalMain extends Application {
                 return;
 
             Celula cell = (Celula) event.getSource();
-            if (cell.foiAtingido())
+            if (cell.isFoiAtingido())
                 return;
 
             enemyTurn = !cell.atirar();
@@ -50,6 +50,8 @@ public class BatalhaNavalMain extends Application {
         });
 
         tabuleiroPlayer = new Tabuleiro(false, event -> {
+            if(running)
+                return;
             ArrayList<Navio> naviosParaPosicionar = new ArrayList<Navio>();
             naviosParaPosicionar.add(new Corveta());
             naviosParaPosicionar.add(new Submarino());
@@ -103,6 +105,7 @@ public class BatalhaNavalMain extends Application {
                 --qntdNaviosParaPosicionar;
             }
         }
+        running = true;
     }
 
     public void movimentoInimigo(){
@@ -111,7 +114,7 @@ public class BatalhaNavalMain extends Application {
             int y = random.nextInt(10);
             Celula cell = tabuleiroPlayer.getCell(x, y);
 
-            if(cell.foiAtingido()){
+            if(cell.isFoiAtingido()){
                 continue;
             }
 
