@@ -16,7 +16,6 @@ public class Tabuleiro extends Parent {
     //atributos
     private int qtd_navios;
     private VBox linhas = new VBox();
-    private int colunas = 10;
     private boolean inimigo;
 
     public Tabuleiro(boolean inimigo, EventHandler<? super MouseEvent> handler) {
@@ -30,9 +29,9 @@ public class Tabuleiro extends Parent {
         }
 
 
-        for(int y = 0; y< 10; y++){
+        for(int y = 0; y < 10; y++){
             HBox linha = new HBox();
-            for(int x = 0; x<colunas; x++){
+            for(int x = 0; x < 10; x++){
                 Celula theCelula = new Celula(x, y, this);
                 theCelula.setOnMouseClicked(handler);
                 linha.getChildren().add(theCelula);
