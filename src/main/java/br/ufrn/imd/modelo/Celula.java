@@ -7,12 +7,12 @@ public class Celula extends Rectangle {
 
     private int x;
     private int y;
-    private boolean foiAtingido = false; //precisamos desse atributo? tem um método com o mesmo nome
+    private boolean foiAtingido = false;
     private Navio navio = null;
     private Tabuleiro tabuleiro;
 
     public Celula(int x, int y, Tabuleiro tabuleiro){
-        super(30,30);
+        super(38,38);
         this.x = x;
         this.y = y;
         this.tabuleiro = tabuleiro;

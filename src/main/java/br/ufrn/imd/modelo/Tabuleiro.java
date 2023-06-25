@@ -144,11 +144,6 @@ public class Tabuleiro extends Parent {
                 vizinhos.add(new Celula((int) p.getX(), (int) p.getY(), this));
             }
         }
-
-        //Foi necessário realizar a conversão abaixo. Não entendi muito bem o motivo.
-        //Conversão realizada:
-        //return vizinhos;
-        //Para a linha abaixo
         return vizinhos.toArray(new Celula[0]);
     }
 
@@ -164,8 +159,4 @@ public class Tabuleiro extends Parent {
         return (Celula) ((HBox) linhas.getChildren().get(y)).getChildren().get(x);
     }
 
-
-    void atirar() {
-
-    }
 }
