@@ -15,11 +15,12 @@ import java.util.List;
 public class Tabuleiro extends Parent {
     //atributos
     private int qtd_navios;
-    private VBox linhas = new VBox();
+    private VBox linhas;
     private boolean inimigo;
 
     public Tabuleiro(boolean inimigo, EventHandler<? super MouseEvent> handler) {
         this.inimigo = inimigo;
+        this.linhas = new VBox();
         this.qtd_navios = 4;
         Label tituloTabuleiro = new Label();
         if(inimigo){

@@ -3,11 +3,12 @@ package br.ufrn.imd.modelo;
 public abstract class Navio {
     private int tamanho;
     private int vida;
-    private boolean horizontal = true;
+    private boolean horizontal;
 
     public Navio(int tamanho, int vida) {
         this.tamanho = tamanho;
         this.vida = vida;
+        this.horizontal = true;
     }
 
     public int getTamanho() {

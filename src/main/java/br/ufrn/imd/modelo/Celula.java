@@ -7,12 +7,14 @@ public class Celula extends Rectangle {
 
     private int x;
     private int y;
-    private boolean foiAtingido = false;
-    private Navio navio = null;
+    private boolean foiAtingido;
+    private Navio navio;
     private Tabuleiro tabuleiro;
 
     public Celula(int x, int y, Tabuleiro tabuleiro){
         super(38,38);
+        this.foiAtingido = false;
+        this.navio = null;
         this.x = x;
         this.y = y;
         this.tabuleiro = tabuleiro;

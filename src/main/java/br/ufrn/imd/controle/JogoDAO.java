@@ -15,12 +15,19 @@ import java.util.Random;
 
 public class JogoDAO {
 
-    private boolean isRodando = false;
-    private boolean isTurnoInimigo = false;
-    private int naviosParaColocar = 4;
+    private boolean isRodando;
+    private boolean isTurnoInimigo;
+    private int naviosParaColocar;
     private Tabuleiro tabuleiroPlayer;
     private Tabuleiro tabuleiroInimigo;
-    private Random random = new Random();
+    private Random random;
+
+    public JogoDAO(){
+        this.isRodando = false;
+        this.isTurnoInimigo = false;
+        this.naviosParaColocar = 4;
+        this.random = new Random();
+    }
     public Parent criarTabuleiros(){
         BorderPane root = new BorderPane();
         root.setPrefSize(900, 800);
