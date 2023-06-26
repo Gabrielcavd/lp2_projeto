@@ -13,6 +13,9 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Classe responsável pelo controle do jogo de batalha naval.
+ */
 public class JogoDAO {
 
     private boolean isRodando;
@@ -22,12 +25,22 @@ public class JogoDAO {
     private Tabuleiro tabuleiroInimigo;
     private Random random;
 
+    /**
+     * Construtor da classe JogoDAO.
+     * Inicializa as variáveis de controle e cria uma instância do objeto Random.
+     */
     public JogoDAO(){
         this.isRodando = false;
         this.isTurnoInimigo = false;
         this.naviosParaColocar = 4;
         this.random = new Random();
     }
+
+    /**
+     * Cria e retorna o layout com os tabuleiros do jogo.
+     *
+     * @return o layout com os tabuleiros do jogo.
+     */
     public Parent criarTabuleiros(){
         BorderPane root = new BorderPane();
         root.setPrefSize(900, 800);
@@ -85,6 +98,9 @@ public class JogoDAO {
         return root;
     }
 
+    /**
+     * Inicia o jogo, posicionando os navios do inimigo de forma aleatória.
+     */
     public void comecarJogo(){
         int qntdNaviosParaPosicionar = 4;
         ArrayList<Navio> naviosParaPosicionar = new ArrayList<Navio>();
@@ -110,6 +126,9 @@ public class JogoDAO {
         isRodando = true;
     }
 
+    /**
+     * Executa o movimento do inimigo, selecionando aleatoriamente uma célula do tabuleiro do jogador para atirar.
+     */
     public void movimentoInimigo(){
         while(isTurnoInimigo){
             int x = random.nextInt(10);

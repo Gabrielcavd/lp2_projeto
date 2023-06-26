@@ -12,12 +12,21 @@ import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Representa um tabuleiro do jogo de batalha naval.
+ * O tabuleiro contém células organizadas em linhas e colunas.
+ */
 public class Tabuleiro extends Parent {
-    //atributos
     private int qtd_navios;
     private VBox linhas;
     private boolean inimigo;
 
+    /**
+     * Constrói um tabuleiro com a quantidade de navios e o evento de clique especificados.
+     *
+     * @param inimigo indica se o tabuleiro é do inimigo (true) ou do jogador (false).
+     * @param handler o evento de clique a ser associado às células do tabuleiro.
+     */
     public Tabuleiro(boolean inimigo, EventHandler<? super MouseEvent> handler) {
         this.inimigo = inimigo;
         this.linhas = new VBox();
@@ -28,7 +37,6 @@ public class Tabuleiro extends Parent {
         } else {
             tituloTabuleiro.setText("Tabuleiro Player");
         }
-
 
         for(int y = 0; y < 10; y++){
             HBox linha = new HBox();
@@ -42,17 +50,34 @@ public class Tabuleiro extends Parent {
         HBox LinhaTexto = new HBox(tituloTabuleiro);
         linhas.getChildren().add(LinhaTexto);
         getChildren().add(linhas);
-
     }
 
+    /**
+     * Obtém a quantidade de navios restantes no tabuleiro.
+     *
+     * @return a quantidade de navios restantes.
+     */
     public int getQtd_navios() {
         return qtd_navios;
     }
 
+    /**
+     * Define a quantidade de navios restantes no tabuleiro.
+     *
+     * @param qtd_navios a quantidade de navios restantes.
+     */
     public void setQtd_navios(int qtd_navios) {
         this.qtd_navios = qtd_navios;
     }
 
+    /**
+     * Posiciona um navio no tabuleiro na posição especificada.
+     *
+     * @param navio o navio a ser posicionado.
+     * @param x a coordenada x da posição.
+     * @param y a coordenada y da posição.
+     * @return true se o navio foi posicionado com sucesso, false caso contrário.
+     */
     public boolean posicionar_navio(Navio navio, int x, int y) {
         if (cabeNavio(navio, x, y)) {
             int tamanho = navio.getTamanho();
@@ -93,8 +118,7 @@ public class Tabuleiro extends Parent {
                     return false;
                 }
 
-                for (Celula vizinho :
-                        getVizinhos(i, y)) {
+                for (Celula vizinho : getVizinhos(i, y)) {
                     if (!pontoValido(i, y)) {
                         return false;
                     }
@@ -155,8 +179,14 @@ public class Tabuleiro extends Parent {
         return (x >= 0) && (x < 10) && (y >= 0) && (y < 10);
     }
 
+    /**
+     * Obtém a célula do tabuleiro nas coordenadas especificadas.
+     *
+     * @param x a coordenada x da célula.
+     * @param y a coordenada y da célula.
+     * @return a célula do tabuleiro nas coordenadas especificadas.
+     */
     public Celula getCell(int x, int y) {
         return (Celula) ((HBox) linhas.getChildren().get(y)).getChildren().get(x);
     }
-
 }
